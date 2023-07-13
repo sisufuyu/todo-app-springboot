@@ -5,8 +5,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+@SessionAttributes("name")
 public class LoginController {	
 	private AuthenticationService authenticationService;
 	
@@ -16,7 +18,8 @@ public class LoginController {
 	}
 
 	@RequestMapping(value="login", method = RequestMethod.GET)
-	public String gotoLoginPage() {
+	public String gotoLoginPage(ModelMap model) {
+		model.put("error", "");
 		return "login";
 	}
 	
@@ -25,6 +28,8 @@ public class LoginController {
 		//Authentication
 		//name - admin
 		//password - 123456
+		
+		model.put("name", name);
 		
 		if(authenticationService.authenticate(name, password)) {
 			return "welcome";
