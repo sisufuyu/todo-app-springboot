@@ -2,9 +2,13 @@ package com.springboot.todoapp.todo;
 
 import java.time.LocalDate;
 
+import jakarta.validation.constraints.Size;
+
 public class ToDo {
 	private int id;
 	private String username;
+	
+	@Size(min=5, message="At least 5 characters")
 	private String description;
 	private LocalDate targetDate;
 	private boolean done;
