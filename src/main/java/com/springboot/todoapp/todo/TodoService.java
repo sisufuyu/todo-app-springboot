@@ -15,13 +15,14 @@ public class TodoService {
 	
 	private static int count = 0;
 	static {
-		todoList.add(new ToDo(++count, "admin", "Learn AWS", LocalDate.now().plusMonths(1), false));
-		todoList.add(new ToDo(++count, "admin", "Learn Spring Boot", LocalDate.now().plusDays(20), false));
-		todoList.add(new ToDo(++count, "admin", "Learn Azure", LocalDate.now().plusMonths(1), false));
+		todoList.add(new ToDo(++count, "sisu", "Learn AWS", LocalDate.now().plusMonths(1), false));
+		todoList.add(new ToDo(++count, "sisu", "Learn Spring Boot", LocalDate.now().plusDays(20), false));
+		todoList.add(new ToDo(++count, "sisu", "Learn Azure", LocalDate.now().plusMonths(1), false));
 	}
 	
 	public List<ToDo> findByUserName(String username) {
-		return todoList;
+		Predicate<? super ToDo> predicate = todo -> todo.getUsername().equals(username);
+		return todoList.stream().filter(predicate).toList();
 	}
 	
 	public void addTodo(String username,String description, LocalDate targetDate, boolean done) {
