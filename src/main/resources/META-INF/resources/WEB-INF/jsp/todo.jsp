@@ -14,7 +14,11 @@
 			<form:errors path="targetDate" cssClass="text-danger" />
 		</fieldset>
 		<form:input path="id" type="hidden" />
-		<form:input path="done" type="hidden" />
+		<fieldset class="mb-3">
+			<div class="mb-2">Is Done?</div>
+			<form:radiobutton path="done" value="true" class="form-check-input mb-1 me-1" />True<br/>
+			<form:radiobutton path="done" value="false" class="form-check-input mb-1 me-1" />False
+		</fieldset>
 		<button type="submit" class="btn btn-success">SUBMIT</button>
 	</form:form>
 </div>

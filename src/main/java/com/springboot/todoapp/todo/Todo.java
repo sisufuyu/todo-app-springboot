@@ -2,9 +2,16 @@ package com.springboot.todoapp.todo;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
-public class ToDo {
+@Entity
+public class Todo {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String username;
 	
@@ -13,7 +20,11 @@ public class ToDo {
 	private LocalDate targetDate;
 	private boolean done;
 	
-	public ToDo(int id, String username, String description, LocalDate targetDate, boolean done) {
+	public Todo() {
+		super();
+	}
+
+	public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
 		super();
 		this.id = id;
 		this.username = username;
